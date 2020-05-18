@@ -14,7 +14,7 @@ class CreatePlanosCoworkingTable extends Migration
     public function up()
     {
         Schema::create('planos_coworking', function (Blueprint $table) {
-            $table->bigIncrements('id_plano');
+            $table->bigIncrements('id');
             $table->string('nome_plano')->unique();
             $table->float('valor_mensal');
             $table->timestamps();

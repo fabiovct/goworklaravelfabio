@@ -14,15 +14,15 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->bigIncrements('id_cliente');
+            $table->bigIncrements('id');
             $table->string('nome_cliente');
             $table->string('cpf_cnpj');
             $table->bigInteger('id_escritorio')->unsigned();
             $table->bigInteger('id_plano')->unsigned();
 
 
-            $table->foreign('id_escritorio')->references('id_escritorio')->on('escritorios')->onDelete('cascade');
-            $table->foreign('id_plano')->references('id_plano')->on('planos_coworking')->onDelete('cascade');
+            $table->foreign('id_escritorio')->references('id')->on('escritorios')->onDelete('cascade');
+            $table->foreign('id_plano')->references('id')->on('planos_coworking')->onDelete('cascade');
 
             $table->timestamps();
         });

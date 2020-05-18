@@ -39,6 +39,7 @@ protected function authenticate(Request $request)
 class AuthenticatorController extends Controller
 {
     public function register(Request $request) {
+
        /* $request->validate([
             'name' => 'required|string',
             'email' => 'require|string|email|unique:users',
@@ -65,6 +66,10 @@ class AuthenticatorController extends Controller
     }
 
     public function login(Request $request) {
+        //$value = session_status();
+        //dd($value);
+
+
         $validator = Validator::make($request->all(),[
             'email' => 'required|email',
             'password' => 'required'
@@ -95,6 +100,8 @@ class AuthenticatorController extends Controller
     }
 
     public function logout(Request $request) {
+        //$value = $request->session()->all();
+        //dd($value);
         $request->user()->token()->delete();
         return response()->json([
             'res'=>'Deslogado com sucesso'

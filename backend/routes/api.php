@@ -38,6 +38,17 @@ use Illuminate\Http\Request;
     Route::post('login', 'AuthenticatorController@login');
     Route::get('error', 'AuthenticatorController@error');
 
+    //Escritorios
+    Route::prefix('escritorios/')->group(function(){
+        Route::get('list', 'EscritoriosController@list');
+        Route::post('create', 'EscritoriosController@create');
+        Route::put('update/{id}', 'EscritoriosController@update');
+        Route::get('{id}', 'EscritoriosController@selectById');
+        Route::post('delete/{id}', 'EscritoriosController@delete');
+    });
+
+
+
 
     Route::middleware('auth:api')->group(function(){
         Route::post('logout', 'AuthenticatorController@logout');

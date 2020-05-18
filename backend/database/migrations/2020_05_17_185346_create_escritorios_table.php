@@ -14,7 +14,7 @@ class CreateEscritoriosTable extends Migration
     public function up()
     {
         Schema::create('escritorios', function (Blueprint $table) {
-            $table->bigIncrements('id_escritorio');
+            $table->bigIncrements('id');
             $table->string('nome_escritorio')->unique();
             $table->string('endereco_escritorio')->nullable();
             $table->timestamps();

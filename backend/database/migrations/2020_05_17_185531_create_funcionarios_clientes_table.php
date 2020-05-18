@@ -14,12 +14,12 @@ class CreateFuncionariosClientesTable extends Migration
     public function up()
     {
         Schema::create('funcionarios_clientes', function (Blueprint $table) {
-            $table->bigIncrements('id_funcionarios');
+            $table->bigIncrements('id');
             $table->string('nome_usuario');
             $table->string('cpf_usuario');
             $table->bigInteger('id_cliente')->unsigned();
 
-            $table->foreign('id_cliente')->references('id_cliente')->on('clientes')->onDelete('cascade');
+            $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
         });
     }
