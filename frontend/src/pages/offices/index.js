@@ -19,7 +19,7 @@ export default function Offices() {
     useEffect(() => {
         
         async function loadOffices() {
-            const response = await api.get('/api/escritorios', {
+            const response = await api.get('/api/escritorios/list', {
             });
             setOffices(response.data)
     }

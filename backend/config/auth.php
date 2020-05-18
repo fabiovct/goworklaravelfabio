@@ -43,10 +43,11 @@ return [
 
         'api' => [
             'driver' => 'passport',
+            //'driver' => 'session',
             //token
             'provider' => 'users',
             'hash' =>false,
-            'expire' => 1,
+            'expire' => 60,
         ],
     ],
 

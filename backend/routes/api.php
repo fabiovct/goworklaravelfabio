@@ -15,11 +15,11 @@ use Illuminate\Http\Request;
 //Route::prefix('auth')->group(function(){
     Route::post('register', 'AuthenticatorController@register');
     Route::post('login', 'AuthenticatorController@login');
-    Route::post('logout', 'AuthenticatorController@logout')->middleware('validate');
-    //Route::get('error', 'AuthenticatorController@error');
+    Route::post('logout', 'AuthenticatorController@logout')->middleware('auth:api');
+    Route::get('error', 'AuthenticatorController@error');
 
 
-Route::middleware('validate')->group(function () {
+Route::middleware('auth:api')->group(function () {
 
     //Escritorios
     Route::prefix('escritorios/')->group(function(){

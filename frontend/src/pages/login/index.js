@@ -13,14 +13,13 @@ export default function Login() {
             'password': password
         };
 
-        const response =  await api.post('/login', data, {
+        const response =  await api.post('api/login', data, {
 
         });
 
-            console.log(response.data[0]['status'])
-        if(response.data[0]['status'] === 'true'){
-            localStorage.setItem('status',response.data[0]['status'])
-            window.location.href = '/home';
+        if(response.data['status'] === 'true'){
+            localStorage.setItem('status',response.data['status'])
+            //window.location.href = '/home';
         }
         
         
