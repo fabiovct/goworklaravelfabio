@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Escritorios;
+use App\Funcionarios_clientes;
 use Illuminate\Database\Eloquent\Model;
 
-class EscritoriosController extends Controller
+class FuncionariosController extends Controller
 {
 
     public function index() {
@@ -15,8 +15,8 @@ class EscritoriosController extends Controller
 
     public function list(){
         try{
-        $escritorios = Escritorios::get();
-        return response()->json($escritorios);
+        $usuarios = Funcionarios_clientes::get();
+        return response()->json($usuarios);
     } catch (QueryException $e) {
         return response()->json([
             "error" => $e
@@ -27,12 +27,13 @@ class EscritoriosController extends Controller
     public function create( Request $request) {
 
     try{
-        $escritorio = new Escritorios();
-            $escritorio->nome_escritorio = $request->name;
-            $escritorio->endereco_escritorio = $request->address;
-        $escritorio->save();
+        $usuario = new Funcionarios_clientes();
+            $usuario->nome_usuario = $request->name;
+            $usuario->cpf_usuario = $request->cpf;
+            $usuario->id_cliente = $request->id_cliente;
+        $usuario->save();
 
-        return response()->json($escritorio);
+        return response()->json($usuario);
 
     } catch (QueryException $e) {
         return response()->json([
@@ -44,7 +45,7 @@ class EscritoriosController extends Controller
 public function delete($Id){
     try {
 
-        Escritorios::destroy($Id);
+        Funcionarios_clientes::destroy($Id);
         return response('elemento deletado com sucesso');
     } catch (QueryException $e) {
 
@@ -57,11 +58,12 @@ public function delete($Id){
 public function update(Request $request, $id) {
     try {
 
-        $escritorio = Escritorios::find($id);
-        $escritorio->nome_escritorio = $request->name;
-        $escritorio->endereco_escritorio = $request->address;
-        $escritorio->save();
-        return response()->json($escritorio);
+        $usuario = Funcionarios_clientes::find($id);
+            $usuario->nome_usuario = $request->name;
+            $usuario->cpf_usuario = $request->cpf;
+            $usuario->id_cliente = $request->id_cliente;
+        $usuario->save();
+        return response()->json($usuario);
 
     } catch (QueryException $e) {
         return response()->json([
@@ -72,8 +74,8 @@ public function update(Request $request, $id) {
 
 public function selectById(Request $request){
     try {
-    $escritorio = Escritorios::where('id', '=', $request['id']);
-    return $escritorio->get();
+    $usuario = Funcionarios_clientes::where('id', '=', $request['id']);
+    return $usuario->get();
 } catch (QueryException $e) {
     return response()->json([
         "error" => $e,
