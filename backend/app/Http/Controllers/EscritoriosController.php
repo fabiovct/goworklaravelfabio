@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class EscritoriosController extends Controller
 {
+
     public function index() {
 
     }
 
     public function list(){
+        //dd(session()->all());
+        //dd(session()->get('_token1'));
         $escritorios = Escritorios::get();
         return response()->json($escritorios);
     }

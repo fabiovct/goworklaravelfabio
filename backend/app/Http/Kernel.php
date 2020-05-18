@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
         'api' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\AuthenticateSession::class,
             'throttle:60,1',
             'bindings',
         ],
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'CORS' => \App\Http\Middleware\CORS::class,
+        'validate' =>  \App\Http\Middleware\Validate::class,
     ];
 
     /**
