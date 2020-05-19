@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 
 export default function Login() {
+    const validate = localStorage.getItem('token');
+    console.log(validate)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,16 +23,6 @@ export default function Login() {
             window.location.href = '/home';
         }
         
-        
-
-
-
-        /*async function loadProducts() {
-            const response = await api.get('/product', {
-            });
-            setProducts(response.data.data)
-        }
-        loadProducts();*/
         
     }
     return (
