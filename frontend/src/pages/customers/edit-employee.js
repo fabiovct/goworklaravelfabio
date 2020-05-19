@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 export default function EditEmployee(req) {
     const [name, setName] = useState('');
     const [cpf, setCPF] = useState('');
-    console.log(req.match.params)
 
     const [employees, setEmployees] = useState([]);
     const id_usuario = req.match.params['id_usuario'];
@@ -15,7 +14,7 @@ export default function EditEmployee(req) {
     
     useEffect(() => {
         async function loadEmployee() {
-            const response = await api.get('api/usuarios/edit/'+id_usuario, {
+            const response = await api.get('api/usuarios/'+id_usuario, {
             });
             setEmployees(response.data)
         }
@@ -35,11 +34,11 @@ export default function EditEmployee(req) {
             'id_cliente': id_cliente
         };
 
-        await api.put('/api/usuarios', data, {
+        await api.put('/api/usuarios/update/'+id_usuario, data, {
         }).then(() => {
             window.location.href = '/customers';
         });
-        event.push('/customers')
+        //event.push('/customers')
     }
         
     return (
@@ -71,7 +70,7 @@ export default function EditEmployee(req) {
             />
             </div>
             
-            <button type="submit" className="btn btn-primary" onClick={(event) => handleSubmit(event)}>Submit</button>
+            <button type="submit" className="btn btn-primary" onClick={(event) => handleSubmit(event)}>Atualizar</button>
             <Link to="/customers">
             <button className="btn btn-danger ml-2">Voltar</button>
             </Link>

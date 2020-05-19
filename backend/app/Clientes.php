@@ -13,6 +13,7 @@ class Clientes extends Model
      *
      * @var array
      */
+    protected $table = 'clientes';
     protected $fillable = [
         'nome_cliente', 'cpf_cnpj'
     ];

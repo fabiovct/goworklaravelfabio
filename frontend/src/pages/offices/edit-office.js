@@ -27,16 +27,16 @@ export default function EditOffices(req) {
         event.preventDefault();
         
     const data = {
-            'id': id,
+            //'id': id,
             'name': inputName.current.value, 
             'address': inputAddress.current.value,
         };
-
-        await api.put('/api/escritorios', data, {
+            console.log(data)
+        await api.put('api/escritorios/update/'+id, data, {
         }).then(() => {
             window.location.href = '/offices';
         });
-        event.push('/offices')
+        //event.push('/offices')
     }
         
     return (

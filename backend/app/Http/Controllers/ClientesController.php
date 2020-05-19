@@ -31,7 +31,7 @@ class ClientesController extends Controller
             $cliente->nome_cliente = $request->name;
             $cliente->cpf_cnpj = $request->cpf_cnpj;
             $cliente->id_escritorio = $request->id_escritorio;
-            $cliente->is_plano = $request->id_plano;
+            $cliente->id_plano = $request->id_plano;
         $cliente->save();
 
         return response()->json($cliente);
@@ -63,7 +63,7 @@ public function update(Request $request, $id) {
             $cliente->nome_cliente = $request->name;
             $cliente->cpf_cnpj = $request->cpf_cnpj;
             $cliente->id_escritorio = $request->id_escritorio;
-            $cliente->is_plano = $request->id_plano;
+            $cliente->id_plano = $request->id_plano;
         $cliente->save();
         return response()->json($cliente);
 

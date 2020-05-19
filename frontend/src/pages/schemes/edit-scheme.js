@@ -32,7 +32,7 @@ export default function EditSchemes(req) {
             'price': inputPrice.current.value,
         };
 
-        await api.put('/api/planos', data, {
+        await api.put('api/planos/update/'+id, data, {
         }).then(() => {
             window.location.href = '/schemes';
         });

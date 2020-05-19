@@ -7,16 +7,17 @@ export default function NewSchemes() {
     const [price, setPrice] = useState('');
 
     async function handleSubmit(event) {
+        event.preventDefault();
         const data = {
             'name': name, 
             'price': price,
         };
         
-        await api.post('/api/planos', data, {
+        await api.post('api/planos/create', data, {
         }).then(() => {
             window.location.href = '/schemes';
         });
-        event.push('/schemes')
+        //event.push('/schemes')
     }
     return (
         <div className="container">

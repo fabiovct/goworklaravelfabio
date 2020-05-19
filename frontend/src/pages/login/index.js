@@ -16,10 +16,9 @@ export default function Login() {
         const response =  await api.post('api/login', data, {
 
         });
-
-        if(response.data['status'] === 'true'){
-            localStorage.setItem('status',response.data['status'])
-            //window.location.href = '/home';
+        if(response.data['token']){
+            localStorage.setItem('token',response.data['token'])
+            window.location.href = '/home';
         }
         
         

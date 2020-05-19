@@ -13,6 +13,7 @@ class Funcionarios_clientes extends Model
      *
      * @var array
      */
+    protected $table = 'funcionarios_clientes';
     protected $fillable = [
         'nome_usuario', 'cpf_usuario'
     ];

@@ -14,6 +14,7 @@ class Escritorios extends Model
      * @var array
      */
 
+    protected $table = 'escritorios';
     protected $fillable = [
        'nome_escritorio', 'endereco_escritorio'
     ];

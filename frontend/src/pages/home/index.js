@@ -8,9 +8,11 @@ import api from '../../services/api';
 export default function Home() {
 
     function logout() {
-        api.get('/logout')
+
+
+        api.post('api/logout')
            .then((result) => {
-                localStorage.removeItem('status');
+                localStorage.removeItem('token');
                 window.location.href = '/';
         })
 

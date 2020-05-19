@@ -5,7 +5,7 @@ import api from '../../services/api';
 export default function Offices() {
 
     function deleteOffice(id) {
-        api.delete('/api/escritorios', { data: { id: id }})
+        api.post('api/escritorios/delete/'+id, { data: { id: id }})
            .then((result) => {
             //    const data = result.data.data
                //this.props.toggle()
@@ -19,7 +19,7 @@ export default function Offices() {
     useEffect(() => {
         
         async function loadOffices() {
-            const response = await api.get('/api/escritorios/list', {
+            const response = await api.get('api/escritorios/list', {
             });
             setOffices(response.data)
     }
@@ -46,17 +46,17 @@ export default function Offices() {
         </thead>
             {offices.map(office => (
                     
-                <tbody key={office.id_escritorio}>
+                <tbody key={office.id}>
                 <tr>
-            <th>{office.id_escritorio}</th>
+            <th>{office.id}</th>
                 <td>{office.nome_escritorio}</td>
                 <td>
-                    <Link to={'offices/'+office.id_escritorio}>
+                    <Link to={'offices/'+office.id}>
                     <button className="btn btn-primary btn-sm">Editar</button>
                     </Link>
                     <button 
                         className="btn btn-danger btn-sm ml-2" 
-                        onClick={() => deleteOffice(office.id_escritorio)}
+                        onClick={() => deleteOffice(office.id)}
                     >Excluir</button>
                 </td>
                 </tr>

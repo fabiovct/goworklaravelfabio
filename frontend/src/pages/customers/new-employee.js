@@ -6,18 +6,20 @@ export default function NewEmployee(req) {
     const [name, setName] = useState('');
     const [cpf, setCPF] = useState('');
     const id = req.match.params['id'];
+
     async function handleSubmit(event) {
+        event.preventDefault();
         const data = {
             'id': id,
             'name': name, 
             'cpf': cpf,
         };
         
-        await api.post('/api/usuarios', data, {
+        await api.post('api/usuarios/create', data, {
         }).then(() => {
             window.location.href = '/customers';
         });
-        event.push('/customers')
+        //event.push('/customers')
     }
     return (
         <div className="container">

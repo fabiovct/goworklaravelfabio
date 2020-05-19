@@ -13,9 +13,9 @@ class FuncionariosController extends Controller
 
     }
 
-    public function list(){
+    public function list($id){
         try{
-        $usuarios = Funcionarios_clientes::get();
+        $usuarios = Funcionarios_clientes::where('id_cliente', '=', $id)->get();
         return response()->json($usuarios);
     } catch (QueryException $e) {
         return response()->json([
@@ -30,7 +30,7 @@ class FuncionariosController extends Controller
         $usuario = new Funcionarios_clientes();
             $usuario->nome_usuario = $request->name;
             $usuario->cpf_usuario = $request->cpf;
-            $usuario->id_cliente = $request->id_cliente;
+            $usuario->id_cliente = $request->id;
         $usuario->save();
 
         return response()->json($usuario);

@@ -5,10 +5,8 @@ import api from '../../services/api';
 export default function Schemes() {
 
     function deleteScheme(id) {
-        api.delete('/api/planos', { data: { id: id }})
+        api.post('api/planos/delete/'+id, { data: { id: id }})
            .then((result) => {
-            //    const data = result.data.data
-               //this.props.toggle()
                window.location.reload()
         })
     };
@@ -18,7 +16,7 @@ export default function Schemes() {
     useEffect(() => {
         
         async function loadSchemes() {
-            const response = await api.get('/api/planos', {
+            const response = await api.get('api/planos/list', {
             });
             setSchemes(response.data)
     }
@@ -45,17 +43,17 @@ export default function Schemes() {
         </thead>
             {schemes.map(scheme => (
                     
-                <tbody key={scheme.id_plano}>
+                <tbody key={scheme.id}>
                 <tr>
-            <th>{scheme.id_plano}</th>
+            <th>{scheme.id}</th>
                 <td>{scheme.nome_plano}</td>
                 <td>
-                    <Link to={'schemes/'+scheme.id_plano}>
+                    <Link to={'schemes/'+scheme.id}>
                     <button className="btn btn-primary btn-sm">Editar</button>
                     </Link>
                     <button 
                         className="btn btn-danger btn-sm ml-2" 
-                        onClick={() => deleteScheme(scheme.id_plano)}
+                        onClick={() => deleteScheme(scheme.id)}
                     >Excluir</button>
                 </td>
                 </tr>

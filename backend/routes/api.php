@@ -47,7 +47,7 @@ Route::middleware('auth:api')->group(function () {
     });
     //Funcionarios
     Route::prefix('usuarios/')->group(function(){
-        Route::get('list', 'FuncionariosController@list');
+        Route::get('list/{id}', 'FuncionariosController@list');
         Route::post('create', 'FuncionariosController@create');
         Route::put('update/{id}', 'FuncionariosController@update');
         Route::get('{id}', 'FuncionariosController@selectById');

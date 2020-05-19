@@ -13,6 +13,7 @@ class Planos_coworking extends Model
      *
      * @var array
      */
+    protected $table = 'planos_coworking';
     protected $fillable = [
         'nome_plano', 'valor_mensal'
     ];

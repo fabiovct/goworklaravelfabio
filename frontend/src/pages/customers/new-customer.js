@@ -9,18 +9,20 @@ export default function NewCustomers() {
     const [id_scheme, setId_scheme] = useState('');
 
     async function handleSubmit(event) {
+        event.preventDefault();
         const data = {
             'name': name, 
             'cpf_cnpj': cpf_cnpj,
             'id_escritorio': id_office,
             'id_plano': id_scheme
         };
+        console.log(data)
         
-        await api.post('/api/clientes', data, {
+        await api.post('api/clientes/create', data, {
         }).then(() => {
             window.location.href = '/customers';
         });
-        event.push('/customers')
+        //event.push('/customers')
     }
 
     const [offices, setOffices] = useState([]);
@@ -29,12 +31,12 @@ export default function NewCustomers() {
     useEffect(() => {
         
         async function loadOffices() {
-            const response = await api.get('/api/escritorios', {
+            const response = await api.get('api/escritorios/list', {
             });
             setOffices(response.data)
         }
         async function loadSchemes() {
-            const response = await api.get('/api/planos', {
+            const response = await api.get('api/planos/list', {
             });
             setSchemes(response.data)
         }
@@ -71,8 +73,9 @@ export default function NewCustomers() {
                 <label>Unidade</label>
                 
                 <select className="form-control" onChange={event => setId_office(event.target.value)} >
+                    <option>Escolha Uma Unidade</option>
                     {offices.map(office=> (
-                        <option key={office.id_escritorio} value={office.id_escritorio}>
+                        <option key={office.id} value={office.id}>
                             {office.nome_escritorio}
                         </option>
                     ))}
@@ -82,8 +85,9 @@ export default function NewCustomers() {
                 <label>Plano</label>
                 
                 <select className="form-control" onChange={event => setId_scheme(event.target.value)} >
+                <option>Escolha um Plano</option>
                     {schemes.map(scheme=> (
-                        <option key={scheme.id_plano} value={scheme.id_plano}>
+                        <option key={scheme.id} value={scheme.id}>
                             {scheme.nome_plano}
                         </option>
                     ))}

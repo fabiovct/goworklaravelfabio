@@ -7,16 +7,18 @@ export default function NewOffices() {
     const [address, setAddress] = useState('');
 
     async function handleSubmit(event) {
+        event.preventDefault();
         const data = {
             'name': name, 
             'address': address,
         };
-        
-        await api.post('/api/escritorios', data, {
+
+        await api.post('api/escritorios/create/', data, {
         }).then(() => {
+           // event.preventDefault();
             window.location.href = '/offices';
         });
-        event.push('/offices')
+        //event.push('/offices')
     }
     return (
         <div className="container">

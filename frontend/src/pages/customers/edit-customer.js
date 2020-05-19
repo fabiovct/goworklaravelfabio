@@ -20,7 +20,8 @@ export default function EditCustomers(req) {
     let inputId_scheme = React.createRef();
 
     function deleteEmployee(id) {
-        api.delete('/api/usuarios', { data: { id: id }})
+        console.log(id);
+        api.post('api/usuarios/delete/'+id, { data: { id: id }})
            .then((result) => {
                window.location.reload()
         })
@@ -33,29 +34,28 @@ export default function EditCustomers(req) {
             });
             setCustomers(response.data)
         }
-        async function loadEmployees() {
-            const data = {
-                'id': id,
-            };
 
-            const response = await api.get('api/usuarios/'+id, {
-                
+        async function loadEmployees() {
+            const response = await api.get('api/usuarios/list/'+id, {
+         
             });
             setEmployees(response.data)
         }
+
         async function loadOffices() {
-            const response = await api.get('/api/escritorios', {
+            const response = await api.get('api/escritorios/list', {
             });
             setOffices(response.data)
         }
+
         async function loadSchemes() {
-            const response = await api.get('/api/planos', {
+            const response = await api.get('api/planos/list', {
             });
             setSchemes(response.data)
         }
-    loadOffices();
-    loadSchemes();
 
+        loadOffices();
+        loadSchemes();
         loadEmployees();
         loadCustomer();
     },
@@ -74,11 +74,11 @@ export default function EditCustomers(req) {
             'id_plano': inputId_scheme.current.value
         };
 
-        await api.put('/api/clientes', data, {
+        await api.put('/api/clientes/update/'+id, data, {
         }).then(() => {
             window.location.href = '/customers';
         });
-        event.push('/customers')
+        //event.push('/customers')
     }
         
     return (
@@ -114,7 +114,7 @@ export default function EditCustomers(req) {
                 
                 <select className="form-control" ref={inputId_office} defaultValue={customer.id_escritorio} onChange={event => setId_office(event.target.value)} >
                     {offices.map(office=> (
-                        <option key={office.id_escritorio} value={office.id_escritorio}>
+                        <option key={office.id} value={office.id}>
                             {office.nome_escritorio}
                         </option>
                     ))}
@@ -125,7 +125,7 @@ export default function EditCustomers(req) {
                 
                 <select className="form-control" ref={inputId_scheme} defaultValue={customer.id_plano} onChange={event => setId_scheme(event.target.value)} >
                     {schemes.map(scheme=> (
-                        <option key={scheme.id_plano} value={scheme.id_plano}>
+                        <option key={scheme.id} value={scheme.id}>
                             {scheme.nome_plano}
                         </option>
                     ))}
@@ -150,19 +150,19 @@ export default function EditCustomers(req) {
         </thead>
             {employees.map(employee => (
                     
-                <tbody key={employee.id_funcionarios}>
+                <tbody key={employee.id}>
                 <tr>
-            <th>{employee.id_funcionarios}</th>
+            <th>{employee.id}</th>
                 <td>{employee.nome_usuario}</td>
                 <td>
-                    <Link to={'employees/edit/'+employee.id_funcionarios+'/'+id}>
+                    <Link to={'employees/edit/'+employee.id+'/'+id}>
                     <button className="btn btn-primary btn-sm">Editar</button>
                     </Link>
                     
 
                     <button 
                         className="btn btn-danger btn-sm ml-2" 
-                        onClick={() => deleteEmployee(employee.id_funcionarios)}
+                        onClick={() => deleteEmployee(employee.id)}
                     >Excluir</button>
                 </td>
                 </tr>
