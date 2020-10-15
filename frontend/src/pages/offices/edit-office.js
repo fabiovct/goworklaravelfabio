@@ -11,12 +11,16 @@ export default function EditOffices(req) {
     let inputName = React.createRef();
     let inputAddress = React.createRef();
     
+
+    
+    
     useEffect(() => {
         async function loadOffice() {
             const response = await api.get('api/escritorios/'+id, {
             });
             setOffice(response.data)
         }
+        
         loadOffice();
     },
     []

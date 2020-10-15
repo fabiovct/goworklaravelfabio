@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
+import { deleteCustomer } from './functions';
 
 export default function Customers() {
-
-    function deleteCustomer(id) {
-        api.post('api/clientes/delete/'+id, { data: { id: id }})
-           .then((result) => {
-               window.location.reload()
-        })
-
-    };
-
     const [customers, setCustomers] = useState([]);
-
     useEffect(() => {
-        
         async function loadCustomers() {
             const response = await api.get('api/clientes/list', {
             });

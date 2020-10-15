@@ -53,7 +53,6 @@ import React from 'react';
                 <PrivateRoute path="/customers/:id" exact component={EditCustomers}/>
                 <PrivateRoute path="/customers/employees/new/:id" exact component={NewEmployee}/>
                 <PrivateRoute path="/customers/employees/edit/:id_usuario/:id_cliente" exact component={EditEmployee}/>
-
             </Switch>
         
     );
